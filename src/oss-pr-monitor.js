@@ -8,9 +8,18 @@ export const run = async () => {
     throw errors.ignoreEvent;
   }
 
-  const token = core.getInput('github_token');
+  let token = process.env["GITHUB_TOKEN"] || "";
+  if (token === "") {
+    token = core.getInput("github_token");
+  } else {
+    core.warning("GITHUB_TOKEN environment variable is deprecated.");
+    core.warning(
+      "GitHub Token is passed automatically, so no longer needs to be set."
+    );
+  }
+
   const client = github.getOctokit(token);
-  
+
   if (context.payload.pull_request === undefined) {
     throw errors.ignoreEvent;
   }
@@ -25,7 +34,7 @@ export const run = async () => {
   const body = core.getInput("comment") || "";
   if (body.length > 0) {
     core.info("Creating a comment");
-    await client.rest.issues.create({
+    await client.rest.issues.createComment({
       ...context.repo,
       issue_number: context.issue.number,
       body,

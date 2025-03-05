@@ -36,14 +36,8 @@ const run = async () => {
   if (context.eventName !== "pull_request_target") {
     throw errors.ignoreEvent;
   }
-  let token = process.env["GITHUB_TOKEN"] || "";
-  if (token === "") {
-    token = core.getInput("github_token");
-  } else {
-    core.warning("GITHUB_TOKEN environment variable is deprecated.");
-    core.warning("GitHub Token is passed automatically, so no longer needs to be set.");
-  }
-  const client = new github.GitHub(token);
+  const token = core.getInput('github_token');
+  const client = github.getOctokit(token);
   if (context.payload.pull_request === undefined) {
     throw errors.ignoreEvent;
   }
@@ -58,14 +52,14 @@ const run = async () => {
   const body = core.getInput("comment") || "";
   if (body.length > 0) {
     core.info("Creating a comment");
-    await client.issues.createComment({
+    await client.rest.issues.create({
       ...context.repo,
       issue_number: context.issue.number,
       body
     });
   }
   core.info("Updating the state of a pull request to closed");
-  await client.pulls.update({
+  await client.rest.pulls.update({
     ...context.repo,
     pull_number: context.issue.number,
     state: "closed"
