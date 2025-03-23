@@ -5,6 +5,9 @@ import * as errors from "./errors";
 export const run = async () => {
   const context = github.context;
   if (context.eventName !== "pull_request_target") {
+    core.warning(
+      `Invalid event type ${context.eventName}`
+    );
     throw errors.ignoreEvent;
   }
 
