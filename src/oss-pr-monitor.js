@@ -5,7 +5,7 @@ import * as errors from "./errors";
 export const run = async () => {
   const context = github.context;
   if (context.eventName !== "pull_request_target") {
-    core.warning(
+    core.debug(
       `Invalid event type ${context.eventName}`
     );
     throw errors.ignoreEvent;
@@ -24,7 +24,7 @@ export const run = async () => {
   const client = github.getOctokit(token);
 
   if (context.payload.pull_request === undefined) {
-    core.warning(
+    core.debug(
       `Empty pull_request.payload ${context.payload}`
     );
     throw errors.ignoreEvent;
@@ -33,7 +33,7 @@ export const run = async () => {
   // Ignore organization members and owners. They're allowed to make changes.
   let author_association = context.payload.pull_request.author_association;
   if (author_association === "MEMBER" || author_association === "OWNER") {
-    core.warning(
+    core.debug(
       `Invalid external author ${author_association}`
     );
     throw errors.ignoreEvent;
