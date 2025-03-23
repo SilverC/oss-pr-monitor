@@ -5,9 +5,7 @@ import * as errors from "./errors";
 export const run = async () => {
   const context = github.context;
   if (context.eventName !== "pull_request_target") {
-    core.debug(
-      `Invalid event type ${context.eventName}`
-    );
+    core.debug(`Invalid event type ${context.eventName}`);
     throw errors.ignoreEvent;
   }
 
@@ -17,25 +15,21 @@ export const run = async () => {
   } else {
     core.warning("GITHUB_TOKEN environment variable is deprecated.");
     core.warning(
-      "GitHub Token is passed automatically, so no longer needs to be set."
+      "GitHub Token is passed automatically, so no longer needs to be set.",
     );
   }
 
   const client = github.getOctokit(token);
 
   if (context.payload.pull_request === undefined) {
-    core.debug(
-      `Empty pull_request.payload ${context.payload}`
-    );
+    core.debug(`Empty pull_request.payload ${context.payload}`);
     throw errors.ignoreEvent;
   }
 
   // Ignore organization members and owners. They're allowed to make changes.
   let author_association = context.payload.pull_request.author_association;
   if (author_association === "MEMBER" || author_association === "OWNER") {
-    core.debug(
-      `Invalid external author ${author_association}`
-    );
+    core.debug(`Invalid external author ${author_association}`);
     throw errors.ignoreEvent;
   }
 
