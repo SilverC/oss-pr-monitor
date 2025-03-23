@@ -24,12 +24,18 @@ export const run = async () => {
   const client = github.getOctokit(token);
 
   if (context.payload.pull_request === undefined) {
+    core.warning(
+      `Empty pull_request.payload ${context.payload}`
+    );
     throw errors.ignoreEvent;
   }
 
   // Ignore organization members and owners. They're allowed to make changes.
   let author_association = context.payload.pull_request.author_association;
   if (author_association === "MEMBER" || author_association === "OWNER") {
+    core.warning(
+      `Invalid external author ${author_association}`
+    );
     throw errors.ignoreEvent;
   }
 
