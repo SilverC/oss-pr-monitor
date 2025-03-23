@@ -8,7 +8,7 @@ export const run = async () => {
     core.debug(
       `Invalid event type ${context.eventName}`
     );
-    //throw errors.ignoreEvent;
+    throw errors.ignoreEvent;
     return
   }
 
@@ -28,7 +28,7 @@ export const run = async () => {
     core.debug(
       `Empty pull_request.payload ${context.payload}`
     );
-    //throw errors.ignoreEvent;
+    throw errors.ignoreEvent;
     return
   }
 
@@ -38,7 +38,7 @@ export const run = async () => {
     core.debug(
       `Invalid external author ${author_association}`
     );
-    //throw errors.ignoreEvent;
+    throw errors.ignoreEvent;
     return
   }
 
