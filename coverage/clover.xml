@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1741162616442" clover="3.2.0">
+  <project timestamp="1741162616442" name="All files">
+    <metrics statements="24" coveredstatements="24" conditionals="16" coveredconditionals="16" methods="1" coveredmethods="1" elements="41" coveredelements="41" complexity="0" loc="24" ncloc="24" packages="1" files="2" classes="2"/>
+    <file name="errors.js" path="/workspaces/oss-pr-monitor/src/errors.js">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="4" count="1" type="stmt"/>
+    </file>
+    <file name="oss-pr-monitor.js" path="/workspaces/oss-pr-monitor/src/oss-pr-monitor.js">
+      <metrics statements="22" coveredstatements="22" conditionals="16" coveredconditionals="16" methods="1" coveredmethods="1"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="6" count="8" type="stmt"/>
+      <line num="7" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="11" count="7" type="cond" truecount="2" falsecount="0"/>
+      <line num="12" count="7" type="cond" truecount="2" falsecount="0"/>
+      <line num="13" count="3" type="stmt"/>
+      <line num="15" count="4" type="stmt"/>
+      <line num="16" count="4" type="stmt"/>
+      <line num="21" count="7" type="stmt"/>
+      <line num="23" count="7" type="cond" truecount="2" falsecount="0"/>
+      <line num="24" count="1" type="stmt"/>
+      <line num="28" count="6" type="stmt"/>
+      <line num="29" count="6" type="cond" truecount="4" falsecount="0"/>
+      <line num="30" count="2" type="stmt"/>
+      <line num="34" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="35" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="36" count="2" type="stmt"/>
+      <line num="37" count="2" type="stmt"/>
+      <line num="44" count="4" type="stmt"/>
+      <line num="45" count="4" type="stmt"/>
+      <line num="51" count="4" type="stmt"/>
+    </file>
+  </project>
+</coverage>

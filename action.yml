@@ -1,0 +1,20 @@
+name: 'OSS PR Monitor'
+description: 'GitHub action to immediately close PRs by external contributors that attempt to modify sensitive files.'
+author: 'Casey Silver'
+inputs:
+  comment:
+    description: "Post a issue comment just before closing a pull request."
+    required: false
+  github_token:
+    description: "Token used to close a pull request and create an issue comment"
+    required: false
+    default: ${{ github.token }}
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'node20'
+  main: "dist/index.js"
+branding:
+  icon: "slash"
+  color: "red"
