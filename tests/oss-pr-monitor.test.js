@@ -1,10 +1,9 @@
-
 import * as github from "@actions/github";
 import * as core from "@actions/core";
 import { run } from "../src/oss-pr-monitor";
 import * as errors from "../src/errors";
 
-jest.mock('@actions/github');
+jest.mock("@actions/github");
 
 describe("Close Pull Request", () => {
   let mockOctokit;
@@ -18,7 +17,6 @@ describe("Close Pull Request", () => {
       });
     })(core);
 
-
     mockOctokit = {
       rest: {
         issues: {
@@ -30,41 +28,42 @@ describe("Close Pull Request", () => {
       },
     };
     github.getOctokit.mockReturnValue(mockOctokit);
+    // eslint-disable-next-line no-import-assign
     github.context = {
-      eventName: 'pull_request_target',
-      ref: 'refs/pull/232/merge',
-      workflow: 'OSS PR Monitor',
-      action: 'csilvergithub-action-1',
-      actor: 'csilver',
+      eventName: "pull_request_target",
+      ref: "refs/pull/232/merge",
+      workflow: "OSS PR Monitor",
+      action: "csilvergithub-action-1",
+      actor: "csilver",
       payload: {
-        action: 'closed',
-        number: '1',
+        action: "closed",
+        number: "1",
         pull_request: {
           number: 1,
-          title: 'test',
+          title: "test",
           user: {
-            login: 'csilver',
+            login: "csilver",
           },
-          author_association: "CONTRIBUTOR"
+          author_association: "CONTRIBUTOR",
         },
         repository: {
-          name: 'test',
+          name: "test",
           owner: {
-            login: 'csilver',
+            login: "csilver",
           },
         },
       },
       repo: {
-        owner: 'csilver',
-        repo: 'test',
+        owner: "csilver",
+        repo: "test",
       },
       issue: {
-        owner: 'csilver',
-        repo: 'test',
+        owner: "csilver",
+        repo: "test",
         number: 1,
       },
-      sha: ''
-    }
+      sha: "",
+    };
   });
 
   afterEach(() => {
@@ -136,10 +135,8 @@ describe("Close Pull Request", () => {
   });
 
   describe("when pull_request is undefined", () => {
-    let warnSpy;
-
     beforeEach(() => {
-      github.context.payload.pull_request = undefined
+      github.context.payload.pull_request = undefined;
     });
 
     it("should throw 'ignore event' error", async () => {
@@ -173,5 +170,4 @@ describe("Close Pull Request", () => {
       });
     });
   });
-  
 });
