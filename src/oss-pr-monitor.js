@@ -9,7 +9,6 @@ export const run = async () => {
       `Invalid event type ${context.eventName}`
     );
     throw errors.ignoreEvent;
-    return
   }
 
   let token = process.env["GITHUB_TOKEN"] || "";
@@ -29,7 +28,6 @@ export const run = async () => {
       `Empty pull_request.payload ${context.payload}`
     );
     throw errors.ignoreEvent;
-    return
   }
 
   // Ignore organization members and owners. They're allowed to make changes.
@@ -39,7 +37,6 @@ export const run = async () => {
       `Invalid external author ${author_association}`
     );
     throw errors.ignoreEvent;
-    return
   }
 
   // *Optional*. Post an issue comment just before closing a pull request.
