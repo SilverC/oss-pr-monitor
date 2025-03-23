@@ -19,6 +19,6 @@ jobs:
       with:
         node-version: "16.x"
     - run: npm install
-    - run: npm run lint --ignorePath src/tests/*
+    - run: npm run lint
     - run: npm test
     - run: npm run build
